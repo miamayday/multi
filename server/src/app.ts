@@ -1,21 +1,23 @@
-import router from './services/router'
-import useSocket from './services/socket'
+const dotenv = require('dotenv')
+
+dotenv.config()
+
+console.log('Environment:', process.env.NODE_ENV)
+
+const PORT = process.env.PORT || 3000
+const HOST = process.env.HOST || '0.0.0.0'
 
 const express = require('express')
 const app = express()
 const http = require('http')
 const server = http.createServer(app)
-const dotenv = require('dotenv')
 
-dotenv.config()
-
-const PORT = process.env.PORT || 3000
-const HOST = process.env.HOST || '0.0.0.0'
-
+import router from './services/router'
 app.use('/', router)
 
+import useSocket from './services/socket'
 useSocket(server)
 
 server.listen(PORT, HOST, () => {
-  console.log(`Running on http://${HOST}:${PORT}`)
+  console.log(`Server running on http://${HOST}:${PORT}`)
 })

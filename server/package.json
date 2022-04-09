@@ -4,9 +4,9 @@
   "description": "",
   "main": "src/app.ts",
   "scripts": {
-    "start": "npm run build && node dist/app.js",
+    "start": "npm run build && NODE_ENV=prod node dist/app.js",
     "build": "npx tsc",
-    "dev": "nodemon src/app.ts",
+    "dev": "NODE_ENV=dev nodemon src/app.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
