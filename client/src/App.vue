@@ -1,6 +1,16 @@
 <script setup lang="ts">
 import HelloWorld from './components/HelloWorld.vue'
 import TheWelcome from './components/TheWelcome.vue'
+
+import { io } from 'socket.io-client'
+
+const SOCKET_ENDPOINT = process.env.SOCKET_ENDPOINT || 'http://localhost:3000'
+
+const socket = io(SOCKET_ENDPOINT)
+
+socket.on('connect', () => {
+  console.log('Connected to', SOCKET_ENDPOINT)
+})
 </script>
 
 <template>
