@@ -1,7 +1,11 @@
 <script setup lang="ts">
+import { ref, type Ref } from 'vue'
 import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
-import { addEventListener, SOCKET_ENDPOINT } from './services/socket'
+import { addEventListener, sendEvent, SOCKET_ENDPOINT } from './services/socket'
+import type Message from './types/Message'
+import Chat from './components/Chat.vue'
+
+const messages: Ref<Array<Message>> = ref([])
 
 addEventListener('connect', () => {
   console.log('Connected to', SOCKET_ENDPOINT)
@@ -10,6 +14,14 @@ addEventListener('connect', () => {
 addEventListener('disconnect', () => {
   console.log('Disconnected from', SOCKET_ENDPOINT)
 })
+
+addEventListener('message', (message: Message) => {
+  messages.value.push(message)
+})
+
+function sendMessage(content: string) {
+  sendEvent('message', content)
+}
 </script>
 
 <template>
@@ -28,7 +40,7 @@ addEventListener('disconnect', () => {
   </header>
 
   <main>
-    <TheWelcome />
+    <Chat :messages="messages" :sendMessage="sendMessage" />
   </main>
 </template>
 
