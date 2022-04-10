@@ -1,21 +1,26 @@
 <script setup lang="ts">
 import HelloWorld from './components/HelloWorld.vue'
 import TheWelcome from './components/TheWelcome.vue'
+import { addEventListener, SOCKET_ENDPOINT } from './services/socket'
 
-import { io } from 'socket.io-client'
-
-const SOCKET_ENDPOINT = process.env.SOCKET_ENDPOINT || 'http://localhost:3000'
-
-const socket = io(SOCKET_ENDPOINT)
-
-socket.on('connect', () => {
+addEventListener('connect', () => {
   console.log('Connected to', SOCKET_ENDPOINT)
+})
+
+addEventListener('disconnect', () => {
+  console.log('Disconnected from', SOCKET_ENDPOINT)
 })
 </script>
 
 <template>
   <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
+    <img
+      alt="Vue logo"
+      class="logo"
+      src="./assets/logo.svg"
+      width="125"
+      height="125"
+    />
 
     <div class="wrapper">
       <HelloWorld msg="You did it!" />
