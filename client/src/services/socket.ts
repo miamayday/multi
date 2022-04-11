@@ -3,8 +3,7 @@ import type ServerToClientEvents from '../events/ServerToClientEvents'
 import type ClientToServerEvents from '../events/ClientToServerEvents'
 import type { EventNames, EventParams } from '@socket.io/component-emitter'
 
-export const SOCKET_ENDPOINT =
-  process.env.SOCKET_ENDPOINT || 'http://localhost:3000'
+export const SOCKET_ENDPOINT = 'http://localhost:3000/'
 
 const localIP = 'localhost'
 const networkIP = '0.0.0.0'

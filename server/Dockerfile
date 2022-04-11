@@ -4,7 +4,10 @@ COPY package*.json ./
 RUN npm install
 COPY . .
 RUN npm run build
-RUN rm -rf src
 RUN npm prune --production
-EXPOSE 3000
-CMD ["npm", "start"]
+
+FROM node:lts-alpine as production-stage
+WORKDIR /app
+COPY --from=build-stage /app/dist ./dist
+COPY --from=build-stage /app/node_modules ./node_modules
+CMD ["node", "dist/app.js"]
