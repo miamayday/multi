@@ -17,6 +17,9 @@ spec:
           image: hapril/chat-server:latest
           ports:
             - containerPort: 3000
+          env:
+            - name: NODE_ENV
+              value: prod
 ---
 apiVersion: v1
 kind: Service
