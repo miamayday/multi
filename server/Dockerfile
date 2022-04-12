@@ -10,4 +10,5 @@ FROM node:lts-alpine as production-stage
 WORKDIR /app
 COPY --from=build-stage /app/dist ./dist
 COPY --from=build-stage /app/node_modules ./node_modules
+ENV HOST=0.0.0.0
 CMD ["node", "dist/app.js"]

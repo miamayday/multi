@@ -2,10 +2,8 @@ const dotenv = require('dotenv')
 
 dotenv.config()
 
-console.log('Environment:', process.env.NODE_ENV)
-
 const PORT = process.env.PORT || 3000
-const HOST = process.env.NODE_ENV === 'prod' ? '0.0.0.0' : 'localhost'
+const HOST = process.env.HOST || 'localhost'
 
 const express = require('express')
 const app = express()
