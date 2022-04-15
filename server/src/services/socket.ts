@@ -4,6 +4,9 @@ import { randomUUID } from 'crypto'
 import ClientToServerEvents from '../events/ClientToServerEvents'
 import ServerToClientEvents from '../events/ServerToClientEvents'
 import Message from '../types/Message'
+import DAO from './dao'
+
+const db = new DAO()
 
 function nextID(): string {
   return randomUUID()
@@ -21,6 +24,8 @@ function useSocket(server: HTTPServer): void {
     // https://socket.io/docs/v3/emit-cheatsheet/
 
     socket.on('message', (content: string) => {
+      console.log(`MESSAGE\n  From: ${socket.id}\n  Content: ${content}`)
+
       const message: Message = {
         id: nextID(),
         user: {
@@ -29,10 +34,9 @@ function useSocket(server: HTTPServer): void {
         },
         content
       }
+
       io.emit('message', message)
-      console.log(
-        `MESSAGE\n  From: ${socket.id}\n  Content: ${message.content}`
-      )
+      db.createLog(message)
     })
   })
 }
