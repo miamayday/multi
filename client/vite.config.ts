@@ -12,7 +12,9 @@ export default defineConfig({
     }
   },
   define: {
-    'process.env': {}
+    'process.env': {
+      SERVER_URL: process.env.VUE_SERVER_URL
+    }
   },
   server: {
     host: true,

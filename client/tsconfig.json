@@ -1,6 +1,6 @@
 {
   "extends": "@vue/tsconfig/tsconfig.web.json",
-  "include": ["env.d.ts", "src/**/*", "src/**/*.vue"],
+  "include": ["env.d.ts", "src/**/*", "src/**/*.vue", "lib/config.js"],
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
@@ -13,7 +13,6 @@
     "moduleResolution": "node",
     "types": ["node"]
   },
-
   "references": [
     {
       "path": "./tsconfig.vite-config.json"
