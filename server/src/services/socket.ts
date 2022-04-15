@@ -29,7 +29,7 @@ function useSocket(server: HTTPServer): void {
         },
         content
       }
-      socket.emit('message', message)
+      io.emit('message', message)
       console.log(
         `MESSAGE\n  From: ${socket.id}\n  Content: ${message.content}`
       )
