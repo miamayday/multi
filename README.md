@@ -27,6 +27,12 @@ docker run --name server -it --rm \
 server
 ```
 
+Multi-arch support:
+
+```
+docker buildx build --platform linux/amd64,linux/arm64 -t <DOCKER_HUB_USER>/chat-server:latest --push .
+```
+
 ## Client
 
 ```
@@ -36,3 +42,11 @@ docker run --name client -it --rm \
 -p 8080:8080 \
 client
 ```
+
+Multi-arch support:
+
+```
+docker buildx build --platform linux/amd64,linux/arm64 -t <DOCKER_HUB_USER>/chat-client:latest --push .
+```
+
+# Kubernetes Guide
