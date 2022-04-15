@@ -17,6 +17,9 @@ spec:
           image: hapril/chat-server
           ports:
             - containerPort: 3000
+          env:
+            - name: PGHOST
+              value: database
 ---
 apiVersion: v1
 kind: Service

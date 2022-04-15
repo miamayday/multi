@@ -11,7 +11,7 @@ docker run --name database -d \
 postgres
 ```
 
-Connect to the database.
+Connect to the database:
 
 ```
 docker exec -it database psql -U postgres -d chat
@@ -52,3 +52,29 @@ docker buildx build --platform linux/amd64,linux/arm64 \
 ```
 
 # Kubernetes Guide
+
+## Database
+
+```
+kubectl apply -f database.yaml
+```
+
+Connect to the database:
+
+```
+kubectl exec -it <DATABASE_POD> -- psql -U postgres -d chat
+```
+
+## Server
+
+```
+kubectl apply -f server.yaml
+```
+
+## Client
+
+Set the SERVER_URL environment variable in the YAML manifest.
+
+```
+kubectl apply -f client.yaml
+```
