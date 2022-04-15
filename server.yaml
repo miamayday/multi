@@ -14,12 +14,9 @@ spec:
     spec:
       containers:
         - name: chat-server
-          image: hapril/chat-server:latest
+          image: hapril/chat-server
           ports:
             - containerPort: 3000
-          env:
-            - name: HOST
-              value: 0.0.0.0
 ---
 apiVersion: v1
 kind: Service
