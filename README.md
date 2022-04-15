@@ -30,7 +30,8 @@ server
 Multi-arch support:
 
 ```
-docker buildx build --platform linux/amd64,linux/arm64 -t <DOCKER_HUB_USER>/chat-server:latest --push .
+docker buildx build --platform linux/amd64,linux/arm64 \
+-t <DOCKER_HUB_USER>/chat-server:latest --push .
 ```
 
 ## Client
@@ -46,7 +47,8 @@ client
 Multi-arch support:
 
 ```
-docker buildx build --platform linux/amd64,linux/arm64 -t <DOCKER_HUB_USER>/chat-client:latest --push .
+docker buildx build --platform linux/amd64,linux/arm64 \
+-t <DOCKER_HUB_USER>/chat-client:latest --push .
 ```
 
 # Kubernetes Guide
