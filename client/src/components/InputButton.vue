@@ -1,16 +1,13 @@
 <script setup lang="ts">
-import { type PropType, ref } from 'vue'
+import { ref } from 'vue'
 
-const props = defineProps({
-  prompt: {
-    type: String,
-    required: true
-  },
-  submit: {
-    type: Function as PropType<(value: string) => void>,
-    required: true
-  }
-})
+interface Props {
+  inputId?: string
+  prompt: string
+  submit: (value: string) => void
+}
+
+const props = defineProps<Props>()
 
 const userInput = ref('')
 
@@ -24,7 +21,7 @@ function onSubmit() {
 
 <template>
   <div class="in-btn">
-    <input v-model="userInput" @keyup.enter="onSubmit" />
+    <input :id="inputId" v-model="userInput" @keyup.enter="onSubmit" />
     <button @click="onSubmit">{{ prompt }}</button>
   </div>
 </template>
