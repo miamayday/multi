@@ -78,3 +78,9 @@ Set the SERVER_URL environment variable in the YAML manifest.
 ```
 kubectl apply -f client.yaml
 ```
+
+# HELM Guide
+
+```
+helm install --debug --dry-run chart ./chart
+```

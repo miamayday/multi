@@ -18,6 +18,10 @@ spec:
           ports:
             - containerPort: 3000
           env:
+            - name: PORT
+              value: 3000
+            - name: HOST
+              value: 0.0.0.0
             - name: PGHOST
               value: database
 ---
