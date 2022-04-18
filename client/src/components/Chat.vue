@@ -1,18 +1,13 @@
 <script setup lang="ts">
-import type { PropType } from 'vue'
 import type Message from '../types/Message'
 import InputButton from './InputButton.vue'
 
-const props = defineProps({
-  messages: {
-    type: Array as PropType<Array<Message>>,
-    required: true
-  },
-  sendMessage: {
-    type: Function as PropType<(content: string) => void>,
-    required: true
-  }
-})
+interface Props {
+  messages: Message[]
+  sendMessage: (content: string) => void
+}
+
+const props = defineProps<Props>()
 
 function submit(value: string) {
   props.sendMessage(value)
