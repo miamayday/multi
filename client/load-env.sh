@@ -2,6 +2,10 @@
 
 VUE_SERVER_URL=${SERVER_URL}
 
+echo SERVER_URL = ${SERVER_URL}
+echo $SERVER_URL
+echo VUE_SERVER_URL = $VUE_SERVER_URL
+
 ROOT_DIR=/usr/share/nginx/html
 CONFIG_FILE=$ROOT_DIR/env-config.js
 HTML_FILE=$ROOT_DIR/index.html

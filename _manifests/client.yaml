@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: chat-client
-          image: hapril/chat-client:latest
+          image: hapril/chat-client
           ports:
             - containerPort: 80
           env:
