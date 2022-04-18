@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { type PropType, ref } from 'vue'
+import type { PropType } from 'vue'
 import type Message from '../types/Message'
+import InputButton from './InputButton.vue'
 
 const props = defineProps({
   messages: {
@@ -13,13 +14,8 @@ const props = defineProps({
   }
 })
 
-const content = ref('')
-
-function submit() {
-  if (content.value.length > 0) {
-    props.sendMessage(content.value)
-    content.value = ''
-  }
+function submit(value: string) {
+  props.sendMessage(value)
 }
 </script>
 
@@ -28,14 +24,11 @@ function submit() {
     <div id="message-list">
       <div class="ordered">
         <p v-for="message in props.messages" :key="message.id">
-          {{ message.user.id }}: {{ message.content }}
+          {{ message.user.name }}: {{ message.content }}
         </p>
       </div>
     </div>
-    <div id="message-form">
-      <input v-model="content" @keyup.enter="submit" />
-      <button @click="submit">Send</button>
-    </div>
+    <InputButton prompt="Send" :submit="submit" />
   </div>
 </template>
 
@@ -55,26 +48,12 @@ function submit() {
   justify-content: space-between;
   flex-grow: 2;
   max-height: 300px;
-  margin: 8px;
+  margin-bottom: 8px;
 }
 
 .order-content {
   display: flex;
   flex-direction: column;
-}
-
-#message-form {
-  display: flex;
-  flex-direction: row;
-  margin: 8px;
-}
-
-#message-form input {
-  flex-grow: 2;
-}
-
-#message-form button {
-  margin-left: 4px;
 }
 
 ::-webkit-scrollbar {
