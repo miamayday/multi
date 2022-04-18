@@ -40,7 +40,7 @@ docker buildx build --platform linux/amd64,linux/arm64 \
 docker build . -t client
 docker run --name client -it --rm \
 -e SERVER_URL \
--p 8080:8080 \
+-p 80:80 \
 client
 ```
 
