@@ -2,6 +2,8 @@
 
 VUE_SERVER_URL=${SERVER_URL}
 
+printenv
+
 echo SERVER_URL = ${SERVER_URL}
 echo $SERVER_URL
 echo VUE_SERVER_URL = $VUE_SERVER_URL
