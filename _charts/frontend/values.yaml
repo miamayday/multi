@@ -1,0 +1,4 @@
+client:
+  image: hapril/chat-client
+  port: 80
+  serverUrl: !!!REPLACE!!!

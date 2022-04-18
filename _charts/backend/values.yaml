@@ -1,0 +1,12 @@
+database:
+  image: postgres
+  port: 5432
+  user: postgres
+  database: chat
+  password: password
+
+server:
+  image: hapril/chat-server
+  port: 3000
+  host: 0.0.0.0
+  pghost: database
