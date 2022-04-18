@@ -1,12 +1,8 @@
 #!/bin/sh
 
-VUE_SERVER_URL=${SERVER_URL}
+echo SERVER URL: $SERVER_URL
 
-printenv
-
-echo SERVER_URL = ${SERVER_URL}
-echo $SERVER_URL
-echo VUE_SERVER_URL = $VUE_SERVER_URL
+VUE_SERVER_URL=$SERVER_URL
 
 ROOT_DIR=/usr/share/nginx/html
 CONFIG_FILE=$ROOT_DIR/env-config.js
