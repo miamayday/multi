@@ -56,6 +56,7 @@ function changeUsername(value: string) {
 
 #app {
   max-width: 1280px;
+  height: 100vh;
   padding: 2rem;
 
   font-weight: normal;
@@ -65,6 +66,7 @@ main {
   display: flex;
   flex-direction: column;
   place-items: center;
+  height: 100%;
 }
 
 main #profile {
