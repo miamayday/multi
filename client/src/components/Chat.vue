@@ -1,6 +1,6 @@
 <script setup lang="ts">
+import { ref } from 'vue'
 import type Message from '../types/Message'
-import InputButton from './InputButton.vue'
 
 interface Props {
   messages: Message[]
@@ -9,21 +9,34 @@ interface Props {
 
 const props = defineProps<Props>()
 
-function submit(value: string) {
-  props.sendMessage(value)
+const userInput = ref('')
+
+function submit() {
+  if (userInput.value.length > 0) {
+    props.sendMessage(userInput.value)
+    userInput.value = ''
+  }
 }
 </script>
 
 <template>
-  <div id="chat">
+  <div id="chat" class="border">
     <div id="message-list">
-      <div class="ordered">
-        <p v-for="message in props.messages" :key="message.id">
-          {{ message.user.name }}: {{ message.content }}
+      <div class="order">
+        <p
+          v-for="(message, index) in props.messages"
+          :key="message.id"
+          :class="index % 2 === 0 ? 'dark' : 'light'"
+        >
+          <span class="username">{{ message.user.name }}</span>
+          <span>{{ message.content }}</span>
         </p>
       </div>
     </div>
-    <InputButton prompt="Send" :submit="submit" />
+    <div id="message-form">
+      <input v-model="userInput" @keyup.enter="submit" />
+      <button @click="submit">Send</button>
+    </div>
   </div>
 </template>
 
@@ -31,41 +44,59 @@ function submit(value: string) {
 #chat {
   display: flex;
   flex-direction: column;
+  width: 100%;
   height: 300px;
   max-width: 500px;
-  margin: 0 auto;
 }
 
 #message-list {
-  overflow: auto;
   display: flex;
+  overflow: auto;
   flex-direction: column-reverse;
-  justify-content: space-between;
-  flex-grow: 2;
-  max-height: 300px;
-  margin-bottom: 8px;
+  flex-grow: 1;
 }
 
-.order-content {
+.order {
   display: flex;
   flex-direction: column;
 }
 
-::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-  background: #fff;
+#message-list p.dark {
+  background-color: #f5f5f5;
 }
 
-::-webkit-scrollbar-track {
-  -webkit-border-radius: 6px;
-  border-radius: 6px;
-  background: #e8e8e8;
+.username {
+  margin-right: 0.8em;
+
+  font-weight: bold;
+  font-style: italic;
 }
 
-::-webkit-scrollbar-thumb {
-  -webkit-border-radius: 6px;
-  border-radius: 6px;
-  background: #d4d4d4;
+#message-form {
+  display: flex;
+  flex-direction: row;
+}
+
+#message-form input {
+  flex-grow: 1;
+  border: 0;
+  border-top: 1px solid var(--border-color);
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+#message-form button {
+  border: 0;
+  border-top: 1px solid var(--border-color);
+  border-left: 1px solid var(--border-color);
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+#chat ::-webkit-scrollbar-track,
+#chat ::-webkit-scrollbar-thumb {
+  -webkit-border-radius: 0;
+  border-radius: 0;
 }
 </style>
