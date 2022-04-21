@@ -10,13 +10,14 @@ const props = defineProps<Props>()
 
 const showForm = ref(false)
 const userInput = ref('')
+const timedout = ref(false)
 
 function submit() {
   if (userInput.value.length > 0) {
     props.changeUsername(userInput.value)
     userInput.value = ''
     toggle()
-  } else {
+  } else if (!timedout.value) {
     shake()
   }
 }
@@ -25,12 +26,15 @@ function shake() {
   const button = document.querySelector(
     '#profile button.confirm'
   ) as HTMLElement
+
+  timedout.value = true
   button.classList.add('shake')
   button.style.backgroundColor = 'hsla(0, 100%, 70%, 0.267)'
   setTimeout(() => {
     button.style.backgroundColor = '#f0f0f0'
-    document.querySelector('#profile button.confirm')?.classList.remove('shake')
-  }, 820)
+    button.classList.remove('shake')
+    timedout.value = false
+  }, 600)
 }
 
 function toggle() {
@@ -79,7 +83,7 @@ function toggle() {
 }
 
 .shake {
-  animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+  animation: shake 0.6s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
   transform: translate3d(0, 0, 0);
   backface-visibility: hidden;
   perspective: 1000px;
@@ -99,11 +103,11 @@ function toggle() {
   30%,
   50%,
   70% {
-    transform: translate3d(-4px, 0, 0);
+    transform: translate3d(-3px, 0, 0);
   }
   40%,
   60% {
-    transform: translate3d(4px, 0, 0);
+    transform: translate3d(3px, 0, 0);
   }
 }
 </style>
