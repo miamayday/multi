@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { ref, type Ref } from 'vue'
-import HelloWorld from './components/HelloWorld.vue'
 import { addEventListener, sendEvent, SOCKET_ENDPOINT } from './services/socket'
 import type Message from './types/Message'
 import Chat from './components/Chat.vue'
+import Profile from './components/Profile.vue'
 
 const messages: Ref<Array<Message>> = ref([])
 
@@ -22,10 +22,14 @@ addEventListener('message', (message: Message) => {
 function sendMessage(content: string) {
   sendEvent('message', content)
 }
+
+function changeUsername(username: string) {
+  console.log('New username:', username)
+}
 </script>
 
 <template>
-  <header>
+  <!--<header>
     <img
       alt="Vue logo"
       class="logo"
@@ -37,9 +41,10 @@ function sendMessage(content: string) {
     <div class="wrapper">
       <HelloWorld msg="You did it!" />
     </div>
-  </header>
+  </header>-->
 
   <main>
+    <Profile :changeUsername="changeUsername" />
     <Chat :messages="messages" :sendMessage="sendMessage" />
   </main>
 </template>
@@ -49,13 +54,44 @@ function sendMessage(content: string) {
 
 #app {
   max-width: 1280px;
-  margin: 0 auto;
   padding: 2rem;
 
   font-weight: normal;
 }
 
-header {
+main {
+  display: flex;
+  flex-direction: column;
+  place-items: center;
+}
+
+main #profile {
+  margin-bottom: 2rem;
+}
+
+@media (min-width: 1024px) {
+  main {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  main #profile {
+    margin-right: 4rem;
+  }
+
+  main #chat {
+    width: 500px;
+  }
+}
+
+/*main {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}*/
+
+/*header {
   line-height: 1.5;
 }
 
@@ -104,5 +140,5 @@ a,
   .logo {
     margin: 0 2rem 0 0;
   }
-}
+}*/
 </style>
