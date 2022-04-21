@@ -45,8 +45,10 @@ function submit() {
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 300px;
   max-width: 500px;
+  max-height: 300px;
+  min-height: 140px;
+  height: 100%;
 }
 
 #message-list {
