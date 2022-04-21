@@ -16,7 +16,16 @@ function submit() {
     props.changeUsername(userInput.value)
     userInput.value = ''
     toggle()
+  } else {
+    shake()
   }
+}
+
+function shake() {
+  document.querySelector('#profile button.confirm')?.classList.add('shake')
+  setTimeout(() => {
+    document.querySelector('#profile button.confirm')?.classList.remove('shake')
+  }, 820)
 }
 
 function toggle() {
@@ -26,7 +35,6 @@ function toggle() {
 
 <template>
   <div id="profile">
-    <img src="../assets/user.png" />
     <p>
       <span>Logged in as </span
       ><span class="username">{{ props.username }}</span>
@@ -55,16 +63,8 @@ function toggle() {
   align-items: center;
 }
 
-#profile img {
-  width: 128px;
-  height: 128px;
-  margin-bottom: 1em;
-}
-
 #profile p {
   margin-bottom: 1em;
-
-  color: #494949;
 
   text-align: center;
 }
@@ -73,6 +73,32 @@ function toggle() {
   margin-bottom: 1em;
 }
 
-#profile button {
+.shake {
+  animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* https://css-tricks.com/snippets/css/shake-css-keyframe-animation/ */
+
+@keyframes shake {
+  10%,
+  90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  20%,
+  80% {
+    transform: translate3d(2px, 0, 0);
+  }
+  30%,
+  50%,
+  70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+  40%,
+  60% {
+    transform: translate3d(4px, 0, 0);
+  }
 }
 </style>
