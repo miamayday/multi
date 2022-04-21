@@ -8,11 +8,14 @@ interface Props {
 const props = defineProps<Props>()
 
 const showForm = ref(false)
+const userInput = ref('')
 
-function submit(value: string) {
-  props.changeUsername(value)
-  const input = document.getElementById('username-input')
-  input?.blur()
+function submit() {
+  if (userInput.value.length > 0) {
+    props.changeUsername(userInput.value)
+    userInput.value = ''
+    toggle()
+  }
 }
 
 function toggle() {
@@ -26,11 +29,15 @@ function toggle() {
     <p>Logged in as Anonymous</p>
     <div v-if="showForm">
       <div>
-        <input placeholder="New username" />
+        <input
+          v-model="userInput"
+          @keyup.enter="submit"
+          placeholder="New username"
+        />
       </div>
       <div class="center">
-        <button class="red">Cancel</button>
-        <button>Submit</button>
+        <button @click="toggle">Cancel</button>
+        <button class="confirm" @click="submit">Submit</button>
       </div>
     </div>
     <button v-if="!showForm" @click="toggle">Change username</button>
