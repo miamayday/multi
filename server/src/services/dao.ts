@@ -30,7 +30,7 @@ class DAO {
   private execute(query: string, values: any[] = []) {
     this.db.query(query, values, (err: Error, result: QueryResult) => {
       if (err) {
-        console.error(err.stack)
+        console.error(`DB QUERY ERROR\n  ${err.stack}`)
       } else {
         console.log(`${result.command}\n  Rows: ${result.rowCount}`)
       }
