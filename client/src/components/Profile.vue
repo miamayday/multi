@@ -2,6 +2,7 @@
 import { ref } from 'vue'
 
 interface Props {
+  username: string
   changeUsername: (username: string) => void
 }
 
@@ -26,7 +27,10 @@ function toggle() {
 <template>
   <div id="profile">
     <img src="../assets/user.png" />
-    <p>Logged in as Anonymous</p>
+    <p>
+      <span>Logged in as </span
+      ><span class="username">{{ props.username }}</span>
+    </p>
     <div v-if="showForm">
       <div>
         <input

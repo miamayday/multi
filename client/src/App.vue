@@ -6,6 +6,7 @@ import Chat from './components/Chat.vue'
 import Profile from './components/Profile.vue'
 
 const messages: Ref<Array<Message>> = ref([])
+const username = ref('Anonymous')
 
 addEventListener('connect', () => {
   console.log('Connected to', SOCKET_ENDPOINT)
@@ -23,8 +24,9 @@ function sendMessage(content: string) {
   sendEvent('message', content)
 }
 
-function changeUsername(username: string) {
-  sendEvent('username', username)
+function changeUsername(value: string) {
+  sendEvent('username', value)
+  username.value = value
 }
 </script>
 
@@ -44,7 +46,7 @@ function changeUsername(username: string) {
   </header>-->
 
   <main>
-    <Profile :changeUsername="changeUsername" />
+    <Profile :username="username" :changeUsername="changeUsername" />
     <Chat :messages="messages" :sendMessage="sendMessage" />
   </main>
 </template>
