@@ -155,6 +155,11 @@ button:hover{
   margin-right: 1em;
 }
 
+.username {
+  font-weight: bold;
+  font-style: italic;
+}
+
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;

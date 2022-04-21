@@ -22,13 +22,13 @@ function submit() {
 <template>
   <div id="chat" class="border">
     <div id="message-list">
-      <div class="order">
+      <div class="re-order">
         <p
           v-for="(message, index) in props.messages"
           :key="message.id"
           :class="index % 2 === 0 ? 'dark' : 'light'"
         >
-          <span class="username">{{ message.user.name }}</span>
+          <span class="username">{{ message.user.name }}:</span>
           <span>{{ message.content }}</span>
         </p>
       </div>
@@ -56,7 +56,7 @@ function submit() {
   flex-grow: 1;
 }
 
-.order {
+#message-list .re-order {
   display: flex;
   flex-direction: column;
 }
@@ -65,11 +65,8 @@ function submit() {
   background-color: #f5f5f5;
 }
 
-.username {
-  margin-right: 0.8em;
-
-  font-weight: bold;
-  font-style: italic;
+#message-list span.username {
+  margin-right: 0.6em;
 }
 
 #message-form {

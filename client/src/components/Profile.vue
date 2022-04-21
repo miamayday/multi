@@ -22,8 +22,13 @@ function submit() {
 }
 
 function shake() {
-  document.querySelector('#profile button.confirm')?.classList.add('shake')
+  const button = document.querySelector(
+    '#profile button.confirm'
+  ) as HTMLElement
+  button.classList.add('shake')
+  button.style.backgroundColor = 'hsla(0, 100%, 70%, 0.267)'
   setTimeout(() => {
+    button.style.backgroundColor = '#f0f0f0'
     document.querySelector('#profile button.confirm')?.classList.remove('shake')
   }, 820)
 }
