@@ -24,7 +24,7 @@ function sendMessage(content: string) {
 }
 
 function changeUsername(username: string) {
-  console.log('New username:', username)
+  sendEvent('username', username)
 }
 </script>
 
