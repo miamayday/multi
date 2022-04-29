@@ -26,8 +26,15 @@ defineProps<Props>()
 </template>
 
 <style>
+/* CSS Properties Grouping & Order
+1. Positioning
+2. Display & Box Model
+3. Color
+4. Text
+5. Other */
+
 #main {
-  max-width: 1280px;
+  width: 100%;
   height: 100vh;
   padding: 2rem;
 }

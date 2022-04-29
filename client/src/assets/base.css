@@ -74,14 +74,12 @@ body {
   overflow: hidden; /* Custom */
 }
 
-/*
-CSS Properties Grouping & Order
+/* CSS Properties Grouping & Order
 1. Positioning
 2. Display & Box Model
 3. Color
 4. Text
-5. Other
-*/
+5. Other */
 
 :root {
   --border-color: #c5c5c5;
