@@ -1,3 +1,7 @@
+# Chat App
+
+![app screenshot](screenshot.png)
+
 # Docker Guide
 
 ## Database
